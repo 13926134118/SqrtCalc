@@ -10,10 +10,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Install Gradle
-        run: sudo apt update && sudo apt install gradle
+      - name: Build Android App
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.4
       - name: Build APK
-        run: gradle assembleDebug
+        run: ./gradlew assembleDebug
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
