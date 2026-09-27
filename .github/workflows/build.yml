@@ -17,19 +17,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # 自动生成gradle wrapper，不需要仓库里预先放gradle/wrapper
-      - name: Generate Gradle wrapper
-        run: |
-          gradle wrapper --gradle-version 7.5
-      
-      # 修复换行符 + 执行权限
-      - name: Fix gradlew permission and line ending
-        run: |
-          sed -i 's/\r$//' gradlew
-          chmod +x gradlew
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 7.5
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug
+        run: gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
