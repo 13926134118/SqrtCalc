@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             }
             try{
                 double num = Double.parseDouble(inputText);
-                double res = num * sqrtConst;
+                int res = (int)Math.floor(num * sqrtConst);
                 tvResult.setText("结果："+res);
             }catch (Exception e){
                 tvResult.setText("输入有误");
